@@ -123,13 +123,13 @@ if __name__ == "__main__":
     if args.ip_head:
         # tmp_dir = os.path.join(spec['local_dir'], os.path.join('tmp/', spec['name']))
         if args.password:
-            ray.init(address=args.ip_head, redis_password=args.password)
+            ray.init(address=args.ip_head, redis_password=args.password, dashboard_host="127.0.0.1")
         else:
-            ray.init(address=args.ip_head)
+            ray.init(address=args.ip_head, dashboard_host="127.0.0.1")
     else:
         assert args.num_cpus is not None
         assert args.num_gpus is not None
-        ray.init(num_cpus=args.num_cpus, num_gpus=args.num_gpus)
+        ray.init(num_cpus=args.num_cpus, num_gpus=args.num_gpus, dashboard_host="127.0.0.1")
 
     def adjust_config_for_loading(config, alg):
         config["num_workers"] = 1
