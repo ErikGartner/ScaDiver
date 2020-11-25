@@ -1,6 +1,6 @@
 run: PPO
 name: expert0
-local_dir: /home/jungdam/Research/opensource/ScaDiver/data/learning/cmu/experts/
+local_dir: results/
 checkpoint_freq: 100
 checkpoint_at_end: true
 stop: 
@@ -21,20 +21,20 @@ config:
     rollout_fragment_length: 100
     framework: torch
     num_envs_per_worker: 1
-    num_cpus_per_worker: 1
+    num_cpus_per_worker: 0
     num_gpus_per_worker: 0
     model:
         custom_model: fcnn
         custom_model_config:
             log_std_type: constant
             sample_std: 0.1
-    num_workers: 8
+    num_workers: 1
     num_gpus: 0
     batch_mode: truncate_episodes
     observation_filter: NoFilter
     env_config:
         lazy_creation: true
-        project_dir: /home/jungdam/Research/opensource/ScaDiver/
+        project_dir: ./
         fps_sim: 480
         fps_con: 30
         self_collision: true
@@ -106,9 +106,9 @@ config:
             ref_motion_db:
                 -
                     data:
-                        dir:
+                        file:
                             # We assume that all motions in the cluster0 are in this directory
-                            - data/motion/cmu/expert0/
+                            - data/motion/test.bvh
             actuation: 
                 - spd
             self_collision: 
