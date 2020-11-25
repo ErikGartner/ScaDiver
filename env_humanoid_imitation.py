@@ -369,6 +369,7 @@ class Env(env_humanoid_base.Env):
                     continue
                 else:
                     diff_pose_vel = sim_joint_v[j] - kin_joint_v[j]
+                print('Velocity error compared to reference motion: %r' % diff_pose_vel)
                 error['pose_vel'] += char_info.joint_weight[j] * np.dot(diff_pose_vel, diff_pose_vel)
             if len(indices) > 0:
                 error['pose_vel'] /= len(indices)
